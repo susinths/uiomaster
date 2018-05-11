@@ -3,8 +3,8 @@
 IF="ens2"
 IP_SRV="192.168.100.1"
 OUTFILE="/root/scripts/ib_send_bw.txt"
-RUNTIME="30" # in seconds                                                                                                                                                                                        
-MTU="1500"  
+RUNTIME="30" # in seconds                                                                                                                                                                                       
+MTU="9900" 
 #PERFCMD="perf stat -e  cpu-migrations,context-switches,task-clock,cycles,instructions,cache-references,cache-misses"
 #RPERFCMD="rperf -c $IP_SERVER -p 5001 -H -G pw -l 500M -i 2 -t $RUNTIME"
 NETSTAT='cat /proc/net/dev | awk "/${IF}:/ {print \$1,\$2,\$10}"'
