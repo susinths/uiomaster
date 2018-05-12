@@ -4,7 +4,7 @@ IF="ens2"
 IP_SRV="192.168.100.1"
 OUTFILE="/root/scripts/ib_send_bw.txt"
 RUNTIME="30" # in seconds                                                                                                                                                    
-MTU="1500"                           
+MTU="9900"                           
 #PERFCMD="perf stat -e  cpu-migrations,context-switches,task-clock,cycles,instructions,cache-references,cache-misses"
 #RPERFCMD="rperf -c $IP_SERVER -p 5001 -H -G pw -l 500M -i 2 -t $RUNTIME"
 NETSTAT='cat /proc/net/dev | awk "/${IF}:/ {print \$1,\$2,\$10}"'
@@ -13,7 +13,7 @@ HOSTNAME="c8"
 WINSIZE="200k" # in KB
 THREADS="1"
 #When collecting data from experiments run in the VM, specify the I/O virt used: paravirt/virtio, SR-IOV or novirt (bare metal).                                               
-IOVIRT="novirt"
+IOVIRT="paravirt"
 TESTFILENAME="$(date +%F_%H-%M-%S)_vmc8toc7_${HOSTNAME}_iperf_mtu${MTU}_${IOVIRT}.txt"
 
 
