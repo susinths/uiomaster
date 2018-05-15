@@ -3,16 +3,17 @@
 IF="ens2"
 IP_SRV="192.168.100.1"
 OUTFILE="/root/scripts/ib_send_bw.txt"
-RUNTIME="90" # in seconds                                                                                                                                    
-MTU="1500"                                                                                                                                                             
+RUNTIME="90" # in seconds                                                                                                                          
+         
+MTU="9900"
 #PERFCMD="perf stat -e  cpu-migrations,context-switches,task-clock,cycles,instructions,cache-references,cache-misses"                                         
 #RPERFCMD="rperf -c $IP_SERVER -p 5001 -H -G pw -l 500M -i 2 -t $RUNTIME"                                                                                     
 NETSTAT='cat /proc/net/dev | awk "/${IF}:/ {print \$1,\$2,\$10}"'
-SLEEP="40"
+SLEEP="30"
 HOSTNAME="c7"
 WINSIZE="default"
 #When collecting data from experiments run in the VM, specify the I/O virt used: paravirt/virtio, SR-IOV or novirt (bare metal).
-IOVIRT="novirt"
+IOVIRT="paravirt"
 TESTFILENAME="$(date +%F_%H-%M-%S)_vmc8toc7_${HOSTNAME}_iperf_mtu${MTU}_${IOVIRT}.txt"
 
 
@@ -47,7 +48,7 @@ MemAvailable=$(echo  -n $(awk '/^MemAvailable/ {print $2}'  /proc/meminfo))
 Buffers=$(echo  -n $(awk '/^Buffers/ {print $2}'  /proc/meminfo))
 Cached=$(echo  -n $(awk '/^Cached/ {print $2}'  /proc/meminfo))
 echo -e "${StartTime},${StartEpoch},${EndTime},${EndEpoch},${CPULoad},${NetDevRX},${NetDevTX},${IRQ0},${IRQ1},${IRQ2},${IRQ3},${IRQ4},${IRQ5},${IRQ6},${IRQ7},${ProcStats},${MemTotal},${MemFree},${MemAvailable},${Buffers},${Cached}"  >> $TESTFILENAME
-sleep 30  # Since the client will run with -t 30
+sleep ${SLEEP}  # Since the client will run with -t 30
 done
 
 
