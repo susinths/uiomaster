@@ -4,14 +4,14 @@ IF="ens2"
 IP_SRV="192.168.100.1"
 OUTFILE="/root/scripts/ib_send_bw.txt"
 RUNTIME="30" # in seconds  
-MTU="4200"
+MTU="1200"
 NETSTAT='cat /proc/net/dev | awk "/${IF}:/ {print \$1,\$2,\$10}"'
 SLEEP="30"
 HOSTNAME="c7"
 WINSIZE="200k" # in KB
 THREADS="1"
 IOVIRT="novirt"
-TESTFILENAME="$(date +%F_%H-%M-%S)_c8toc7_${HOSTNAME}_roce_mtu${MTU}_${IOVIRT}.txt"
+TESTFILENAME="$(date +%F_%H-%M-%S)_vmc8toc7_${HOSTNAME}_roce_mtu${MTU}_${IOVIRT}.txt"
 echo -e "StartTime,StartEpoch,EndTime,EndEpoch,CPULoad1m,CPULoad5m,CPULoad5m,NetDevRX,NetDevTX,IRQens2-0,IRQens2-1,IRQens2-2,IRQens2-3,IRQens2-4,IRQens2-5,IRQens2-6,IRQens2-7,user,nice,system,idle,iowait,irq,softirq,steal,guest,guest_nice,MemTotal,MemFree,MemAvailable,Buffers,Cached" > $TESTFILENAME
 while true
 do 
